@@ -8,10 +8,10 @@
         <NuxtLink to="/" class="back">
           ←
         </NuxtLink>
-        <CurrentWeatherCard :weather="selectedCard"/>
+        <CurrentWeatherCard :weather="selectedCard" @click:.native="() => switchSelectedDay(selectedCard)"/>
       </div>
       <div class="right">
-        <WeatherCard v-for="weather in daily" :key="weather.dt" :weather="weather"/>
+        <WeatherCard v-for="weather in daily"  :key="weather.dt" :weather="weather" @click:.native="() => switchSelectedDay(weather)"/>
       </div>
     </div>
 
@@ -74,6 +74,16 @@ export default Vue.extend({
       currentWeather: {} as Weather,
       photo: '' as string,
       selectedCard: {} as Weather
+    }
+  },
+  methods: {
+    switchSelectedDay(day: Weather) {
+      if (day.dt === this.$data.selectedCard.dt) {
+        this.selectedCard = this.currentWeather
+      }
+      else {
+        this.selectedCard = day
+      }
     }
   },
 
@@ -139,7 +149,7 @@ export default Vue.extend({
   }
 
   .left {
-    gap : 20px;
+    gap: 20px;
   }
 }
 

@@ -75,6 +75,11 @@ export default Vue.extend({
   background-color: var(--primary-color);
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
 }
 
 .current-weather-card__header {
