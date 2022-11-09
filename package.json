@@ -1,15 +1,14 @@
 {
   "name": "agily-technical-test",
   "version": "1.0.0",
-  "license": "",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider  nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
-    "lint:prettier": "prettier --w .",
+    "lint:prettier": "prettier -w .",
     "lint": "yarn lint:js && yarn lint:prettier",
     "lintfix": "prettier --write --list-different . && yarn lint:js --fix",
     "prepare": "husky install"
@@ -17,6 +16,7 @@
   "dependencies": {
     "core-js": "^3.25.3",
     "nuxt": "^2.15.8",
+    "sass": "^1.56.1",
     "scss": "^0.2.4",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
