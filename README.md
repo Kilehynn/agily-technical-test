@@ -1,6 +1,17 @@
 # agily-technical-test
 
-The technical test that I have to realize for my recruitment process
+[![Netlify Status](https://api.netlify.com/api/v1/badges/dcc55c2c-6218-4b64-8b75-1f51dc25321d/deploy-status)](https://app.netlify.com/sites/agily-technical-test-mexane-delcroix/deploys)
+![CI](https://github.com/kilehynn/agily-technical-test/actions/workflows/ci.yml/badge.svg)
+
+## Introduction
+
+Ce projet est un test technique pour Agily. Il a également été une occasion de mettre en pratique les cours de VueJS de
+MTI pour la première fois dans un vrai projet.
+J'ai également eu l'opportunité de découvrir NuxtJS, qui est un framework VueJS qui permet de créer des applications
+SSR (Server Side Rendering), Axios et le déploiment sur Netlify.
+
+Le but de ce projet est de créer une web app permettant d'afficher la météo d'une ville donnée pour les 7 prochains
+jours.
 
 ## Build Setup
 
@@ -19,65 +30,37 @@ $ yarn start
 $ yarn generate
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+## Découpage du projet en temps
 
-## Special Directories
+* Création du projet avec NuxtJS : 45min - 1h
+* Ajout de Netlify, CI, CD : 1h
+* Création de la page d'accueil : 1h
+* Redirection après la saisie de la ville : 10min
+* Récupération des données de l'API : 1h30
+  * Tentative de faire une requête avec Axios : 30min
+* Mise en forme des données : 2h30
+  * Recherche d'une API pour récupérer les images en fonction de la ville : 30min
+  * Revision de la création de composants VueJS : 30min
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can
-delete them if you don't want to use their functionality.
+## Difficultés rencontrées et retours
 
-### `assets`
+Lors de ce projet, je n'ai pas vraiment vu de principe à implémenter que ça soit, car il s'agit seulement d'un projet de
+front-end ou bien, parce que le projet est assez petit. J'ai donc pu me concentrer sur la mise en place de l'application
+et
+sur la mise en forme des données.
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+J'ai eu quelques difficultés avec Axios, qui est une librairie permettant de faire des requêtes HTTP. J'ai eu du mal à
+comprendre comment l'utiliser correctement avec Nuxt malgré la documentation, ce qui fait que finalement je suis
+repassée
+sur la méthode fetch() qui est fournie par défaut avec Nuxt.
 
-More information about the usage of this directory
-in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+Néanmoins, j'essaierai de me pencher sur Axios pour voir si je peux l'utiliser dans un futur projet.
 
-### `components`
+Pour l'implémentation, j'ai essayé d'utiliser le plus possible les composants de Nuxt pour la mise en forme de la page
+de la ville afin de simplifier le code et de le rendre plus lisible. J'ai aussi essayé de profiter de mon utilisation du
+SCSS pour créer des variables pour les couleurs et de généraliser une partie du style pour simplifier la modification du
+code.
 
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be
-reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory
-in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a
-sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory
-in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory
-and setup Vue Router automatically.
-
-More information about the usage of this directory
-in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application.
-This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you
-should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory
-in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory
-in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory
-in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+Un des plus gros problèmes que j'ai rencontrés est avec la maquette. En effet, la maquette n'était pas très claire sur
+certains points, notamment sur tout ce qui est relatif aux espacements et aux tailles. J'ai donc dû faire des
+approximations afin de rendre le plus proche possible de la maquette.
