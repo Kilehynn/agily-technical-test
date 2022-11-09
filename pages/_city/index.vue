@@ -8,6 +8,7 @@
         <NuxtLink to="/" class="back">
           ←
         </NuxtLink>
+        <CurrentWeatherCard :weather="selectedCard"/>
       </div>
       <div class="right">
         <WeatherCard v-for="weather in daily" :key="weather.dt" :weather="weather"/>
@@ -37,6 +38,9 @@ export default Vue.extend({
 
     const {location}: { location: Location } = await locationFromCity.json()
 
+    if (location === undefined || location === null) {
+      return handleError('Location not found')
+    }
 
     const weatherFromLocation = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${location.lat}&lon=${location.lon}&exclude=current,minutely,hourly,alerts&appid=db988691faf182dfc3750cd1e57f3718&units=metric`);
 
@@ -45,7 +49,7 @@ export default Vue.extend({
     }
     let {daily}: { daily: Weather[] } = await weatherFromLocation.json()
 
-    let currentWeather = daily[0]
+    const currentWeather = daily[0]
     daily = daily.slice(1)
 
     const urlFlickr = `https://www.flickr.com/services/rest/?method=flickr.photos.search&tags=${city.toLowerCase().trim()}&text=${city.toLowerCase().trim()}&format=json&nojsoncallback=1&orientation=landscape&per_page=1&sort=relevance&content_types=0&page=1&extras=url_sq,url_t,url_s,url_q,url_m,url_n,url_z,url_c,url_l,url_o&api_key=e7a86583246b241ee759751bbdd7f410`
@@ -62,7 +66,7 @@ export default Vue.extend({
 
     const photo = photos.photo[0].url_l
 
-    return {currentWeather: currentWeather, daily: daily, photo: photo, selectedCard: currentWeather}
+    return {currentWeather, daily, photo, selectedCard: currentWeather}
   },
   data() {
     return {
@@ -87,16 +91,18 @@ export default Vue.extend({
   width: 100%;
   height: 100%;
   display: flex;
+  padding-right: 35px;
+  padding-left: 35px;
   justify-content: space-between;
   align-items: center;
-  padding: 35px;
 }
 
 
 .back {
   width: 64px;
   height: 64px;
-  padding: 10px 16px;
+  padding-top: 16px;
+  padding-left: 18px;
   background-color: var(--primary-color);
   color: white;
   font-size: 2em;
@@ -108,9 +114,19 @@ export default Vue.extend({
 .right {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end;
   gap: 20px;
-  padding: 20px 0;
+  padding: 30px 0;
+}
+
+.left {
+
+  display: flex;
+  height: 100%;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 35px;
 }
 
 
@@ -120,6 +136,10 @@ export default Vue.extend({
   }
   .right {
     width: 100%;
+  }
+
+  .left {
+    gap : 20px;
   }
 }
 

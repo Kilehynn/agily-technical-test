@@ -16,8 +16,8 @@
 </template>
 
 <script lang="ts">
-import type {Weather} from "@/utils/types/weather";
 import Vue from 'vue'
+import type {Weather} from "@/utils/types/weather";
 
 export default Vue.extend({
   name: "WeatherCard",
@@ -31,12 +31,12 @@ export default Vue.extend({
     getWeekDay(dateUnix: number): string {
       const date = new Date(dateUnix * 1000);
 
-      return date.toLocaleDateString('fr-FR', {weekday: 'long'}).toUpperCase()
+      return date.toLocaleDateString('fr-FR', {weekday: 'long'}).replace(/(^\w)|(\s+\w)/g, letter => letter.toUpperCase());
     },
     getDate(dateUnix: number): string {
       const date = new Date(dateUnix * 1000);
 
-      return date.toLocaleDateString('fr-FR', {day: 'numeric', month: 'long'}).toUpperCase()
+      return date.toLocaleDateString('fr-FR', {day: 'numeric', month: 'long'}).replace(/(^\w)|(\s+\w)/g, letter => letter.toUpperCase());
     }
   }
 
@@ -86,7 +86,7 @@ export default Vue.extend({
 }
 
 .weather-card__temperature {
-  font-size: 2em;
+  font-size: 2.5em;
   font-weight: 800;
 }
 </style>
