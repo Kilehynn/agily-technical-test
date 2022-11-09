@@ -1,14 +1,18 @@
 <template>
   <div class="container">
     <div class="main">
-      <h1>The Forecast<br>Weather App</h1>
-      <form class="search-city"  @submit="onCitySubmitted">
-        <input v-model="city" placeholder="Search" type="search">
+      <h1>The Forecast<br />Weather App</h1>
+      <form class="search-city" @submit="onCitySubmitted">
+        <input v-model="city" placeholder="Search" type="search" />
         <button class="search-city-submit" type="submit">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <script xmlns=""/>
-            <path fill="none" stroke="#000" stroke-width="36" stroke-linecap="round"
-                  d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"/>
+            <path
+              fill="none"
+              stroke="#000"
+              stroke-width="36"
+              stroke-linecap="round"
+              d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"
+            />
           </svg>
         </button>
       </form>
@@ -17,22 +21,22 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue from 'vue'
 
 export default Vue.extend({
-  name : 'IndexPage',
+  name: 'IndexPage',
   data() {
     return {
-      city : ''
-    };
-  },
-  methods : {
-    onCitySubmitted(event: Event) {
-      event.preventDefault();
-      this.$router.push({ name : 'city', params :  {city : this.$data.city } });
+      city: '',
     }
-  }
-});
+  },
+  methods: {
+    onCitySubmitted(event: Event) {
+      event.preventDefault()
+      this.$router.push({ name: 'city', params: { city: this.$data.city } })
+    },
+  },
+})
 </script>
 
 <style lang="scss" scoped>
@@ -75,17 +79,15 @@ h1 {
   }
 }
 
-
 @media screen and (min-width: 481px) {
   .search-city > input {
     width: 35em;
   }
 }
 
-.search-city{
+.search-city {
   position: relative;
 }
-
 
 .search-city-submit {
   background-color: transparent;
