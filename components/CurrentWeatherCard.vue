@@ -76,6 +76,7 @@ export default Vue.extend({
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 
+  transition: 1s ease-in-out;
   &:hover {
     cursor: pointer;
     transform: scale(1.05);

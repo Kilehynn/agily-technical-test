@@ -8,10 +8,10 @@
         <NuxtLink to="/" class="back">
           ←
         </NuxtLink>
-        <CurrentWeatherCard :weather="selectedCard" @click:.native="() => switchSelectedDay(selectedCard)"/>
+        <CurrentWeatherCard :weather="selectedCard" @click.native="() => switchSelectedDay(selectedCard)"/>
       </div>
       <div class="right">
-        <WeatherCard v-for="weather in daily"  :key="weather.dt" :weather="weather" @click:.native="() => switchSelectedDay(weather)"/>
+        <WeatherCard v-for="weather in daily"  :key="weather.dt" :weather="weather" @click.native="() => switchSelectedDay(weather)"/>
       </div>
     </div>
 
@@ -31,7 +31,7 @@ export default Vue.extend({
       error({statusCode: 404, message: err})
     }
 
-    const locationFromCity = await fetch(`http://api.weatherstack.com/current?access_key=7a0fa8ca744af6d18c0976bf836ccb65&query=${city}`);
+    const locationFromCity = await fetch(`http://api.weatherstack.com/current?access_key=70fd190435ae37a277f106103426d471&query=${city}`);
     if (locationFromCity.status !== 200) {
       return handleError('Location not found')
     }
@@ -78,7 +78,7 @@ export default Vue.extend({
   },
   methods: {
     switchSelectedDay(day: Weather) {
-      if (day.dt === this.$data.selectedCard.dt) {
+      if (day.dt === this.selectedCard.dt) {
         this.selectedCard = this.currentWeather
       }
       else {
